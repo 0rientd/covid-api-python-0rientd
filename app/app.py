@@ -8,7 +8,7 @@ port = int(os.environ.get("PORT", 5000))
 
 @app.route('/')
 def index():
-    file = open("data.json",)
+    file = open("app/data.json",)
     json_data = json.load(file, ident=4)
     return render_template('index.html', data = json_data)
 
