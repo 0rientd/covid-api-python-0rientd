@@ -1,6 +1,7 @@
 from flask import Flask, render_template
 import json
 import os
+import sys
 import main
 
 app = Flask(__name__)
@@ -11,9 +12,11 @@ port = int(os.environ.get("PORT", 5000))
 def index():
     main.main()
     try:
+        print("Opening file from server", file=sys.stdout)
         file = open("app/data.json",)
 
     except:
+        print("Opening file from localhost", file=sys.stdout)
         file = open("data.json")
 
     json_data = json.load(file)

@@ -24,13 +24,13 @@ def main():
         try:
             file = "data.json"
             shutil.move(file, "app/data.json")
-            print("Moved with successfully!", file=sys.stdout)
+            print("Moved file with successfully!", file=sys.stdout)
 
         except:
-            print("File not found!", file=sys.stdout)
+            print("File data.json not found!", file=sys.stdout)
 
     except:
-        print("Oops! Something happened")
+        print("Oops! Something happened in main.py")
 
 
 if __name__ == "__main__":
