@@ -9,7 +9,7 @@ port = int(os.environ.get("PORT", 5000))
 @app.route('/')
 def index():
     file = open("app/data.json",)
-    json_data = json.load(file, ident=4)
+    json_data = json.load(file)
     return render_template('index.html', data = json_data)
 
 if __name__ == ('__main__'):
