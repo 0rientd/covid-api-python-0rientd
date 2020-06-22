@@ -11,10 +11,14 @@ def main():
 
         soup = BeautifulSoup(covid_data, 'html.parser')
 
-        data_parser = str(soup.find_all("span", {"style": 'color:#aaa'}))
-        regex = re.findall(r'(\d*,\d*,\d*)', data_parser)
+        data_parser = str(soup.find_all("div", {"class": 'maincounter-number'}))
+        regex1 = re.findall(r'(\d*,\d*,\d*)', data_parser)
+        regex2 = re.findall(r'(\d*,\d*)', data_parser)
+        regex2 = regex2[3]
 
-        json_data = {'Total-Cases': regex[0]}
+        json_data = {'Total-Cases': regex1[0],
+                     'Recovered': regex1[1],
+                     'Deaths': regex2 }
 
         with open('data.json', 'w') as outfile:
             json.dump(json_data, outfile)
