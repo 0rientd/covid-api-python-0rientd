@@ -16,9 +16,18 @@ def main():
         regex2 = re.findall(r'(\d*,\d*)', data_parser)
         regex2 = regex2[3]
 
-        json_data = {'Total-Cases': regex1[0],
-                     'Recovered': regex1[1],
-                     'Deaths': regex2 }
+        brazil_cases = get_Brazil(soup)
+
+        json_data = {
+            "data": [
+                {
+                    "Total-Cases": regex1[0],
+                    "Recovered": regex1[1],
+                    "Deaths": regex2,
+                    "Brazil-Cases": brazil_cases
+                }
+            ]
+        }
 
         with open('data.json', 'w') as outfile:
             json.dump(json_data, outfile)
@@ -36,6 +45,12 @@ def main():
     except:
         print("Oops! Something happened in main.py")
 
+def get_Brazil(soup):
+    soup = soup
+    data_parser = str(soup.find_all("td", {"style": 'font-weight: bold; text-align:right'}, {"class": 'sorting_1'}))
+    regex = re.findall(r'(\d*,\d*,\d*)', data_parser)
+
+    return regex[3]
 
 if __name__ == "__main__":
     main()
