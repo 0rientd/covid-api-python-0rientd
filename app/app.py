@@ -1,14 +1,18 @@
 from flask import Flask, render_template
+from flask_cors import CORS, cross_origin
 import json
 import os
 import sys
 import main
 
 app = Flask(__name__)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = b'1sad564as89123dkmk'
 port = int(os.environ.get("PORT", 5000))
 
 @app.route('/')
+@cross_origin()
 def index():
     main.main()
     try:
