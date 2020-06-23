@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, jsonify
 from flask_cors import CORS, cross_origin
 import json
 import os
@@ -24,7 +24,9 @@ def index():
         file = open("data.json")
 
     json_data = json.load(file)
-    return render_template('index.html', data = json_data)
+
+    #return render_template('index.html', data = json_data)
+    return jsonify(json_data)
 
 if __name__ == ('__main__'):
     app.run(debug=True, host='0.0.0.0', port=port)
