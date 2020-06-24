@@ -8,15 +8,17 @@ import sys
 def main():
     try:
         covid_data = get('https://www.worldometers.info/coronavirus/').text
+        covid_data_brazil = get('https://www.worldometers.info/coronavirus/country/brazil/').text
 
         soup = BeautifulSoup(covid_data, 'html.parser')
+        soup_brazil = BeautifulSoup(covid_data_brazil, 'html.parser')
 
         data_parser = str(soup.find_all("div", {"class": 'maincounter-number'}))
         regex1 = re.findall(r'(\d*,\d*,\d*)', data_parser)
         regex2 = re.findall(r'(\d*,\d*)', data_parser)
         regex2 = regex2[3]
 
-        brazil_cases = get_Brazil(soup)
+        brazil_cases = get_Brazil(soup_brazil)
 
         json_data = {
             "data": [
@@ -47,10 +49,10 @@ def main():
 
 def get_Brazil(soup):
     soup = soup
-    data_parser = str(soup.find_all("td", {"style": 'font-weight: bold; text-align:right'}, {"class": 'sorting_1'}))
+    data_parser = str(soup.find_all("div", {"class": 'maincounter-number'}))
     regex = re.findall(r'(\d*,\d*,\d*)', data_parser)
 
-    return regex[3]
+    return regex[0]
 
 if __name__ == "__main__":
     main()
