@@ -23,9 +23,9 @@ def main():
         json_data = {
             "data": [
                 {
-                    "Total-Cases": regex1[0],
-                    "Recovered": regex1[1],
-                    "Deaths": regex2,
+                    "Global-Cases": regex1[0],
+                    "Global-Recovered": regex1[1],
+                    "Global-Deaths": regex2,
                     "Brazil-Cases": brazil_cases
                 }
             ]
