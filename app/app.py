@@ -33,5 +33,23 @@ def global_cases():
     #return render_template('index.html', data = json_data)
     return jsonify(json_data)
 
+@app.route('/country')
+@cross_origin()
+def country_cases():
+    main.countries()
+    
+    try:
+        print("Opening file from server", file=sys.stdout)
+        file = open("app/data_country.json",)
+
+    except:
+        print("Opening file from localhost", file=sys.stdout)
+        file = open("data_country.json")
+
+    json_data = json.load(file)
+
+    #return render_template('index.html', data = json_data)
+    return jsonify(json_data)
+
 if __name__ == ('__main__'):
     app.run(debug=True, host='0.0.0.0', port=port)
