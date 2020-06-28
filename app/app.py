@@ -33,7 +33,7 @@ def global_cases():
     #return render_template('index.html', data = json_data)
     return jsonify(json_data)
 
-@app.route('/country')
+@app.route('/countries')
 @cross_origin()
 def country_cases():
     main.countries()
