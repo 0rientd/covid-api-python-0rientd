@@ -18,7 +18,7 @@ def main():
         regex2 = re.findall(r'(\d*,\d*)', data_parser)
         regex2 = regex2[3]
 
-        brazil_cases = get_Brazil(soup_brazil)
+        #brazil_cases = get_Brazil(soup_brazil)
 
         json_data = {
             "data": [
@@ -26,7 +26,7 @@ def main():
                     "Global-Cases": regex1[0],
                     "Global-Recovered": regex1[1],
                     "Global-Deaths": regex2,
-                    "Brazil-Cases": brazil_cases
+                    #"Brazil-Cases": brazil_cases
                 }
             ]
         }

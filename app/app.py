@@ -14,6 +14,11 @@ port = int(os.environ.get("PORT", 5000))
 @app.route('/')
 @cross_origin()
 def index():
+    return render_template('index.html')
+
+@app.route('/global')
+@cross_origin()
+def global_cases():
     main.main()
     try:
         print("Opening file from server", file=sys.stdout)
